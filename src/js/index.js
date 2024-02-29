@@ -11,6 +11,8 @@
  * Get holidays from API
  * 
  * https://docs.abstractapi.com/holidays
+ * https://app.abstractapi.com/api/holidays/tester
+ * 
  */
 
 
