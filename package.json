@@ -1,13 +1,13 @@
 {
   "name": "aimagine",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Scott Bram <scottbram@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1"
