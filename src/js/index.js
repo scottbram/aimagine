@@ -22,4 +22,4 @@
  */
 const imgUrl = null;
 
-document.querySelector('#HolidayImg').src = imgUrl;
+// document.querySelector('#HolidayImg').src = imgUrl;
