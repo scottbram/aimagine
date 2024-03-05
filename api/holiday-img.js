@@ -4,7 +4,12 @@ const { OPENAI_API_KEY } = process.env
 exports.handler = async (event, context) => {
 	const axios = require('axios');
 
-	axios.get(`https://holidays.abstractapi.com/v1/?api_key=${ ABSTRACT_API_KEY }&country=US&year=2024&month=3`)
+	const now = new Date();
+	const year = (now.toLocaleString("en-US", { year: "numeric" }));
+	const month = (now.toLocaleString("en-US", { month: "2-digit" }));
+	const day = (now.toLocaleString("en-US", { day: "2-digit" }));
+
+	axios.get(`https://holidays.abstractapi.com/v1/?api_key=${ABSTRACT_API_KEY}&country=US&year=${ year }&month=${month}&day=${day}`)
 	.then( resp => {
 		let resp_obj;
 
