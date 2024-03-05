@@ -1,7 +1,8 @@
 const { ABSTRACT_API_KEY } = process.env
 const { OPENAI_API_KEY } = process.env
 
-exports.handler = async (event, context) => {
+// exports.handler = async (event, context) => {
+export default function handler (request, response) {
 	const axios = require('axios');
 
 	const now = new Date();
@@ -11,30 +12,35 @@ exports.handler = async (event, context) => {
 
 	axios.get(`https://holidays.abstractapi.com/v1/?api_key=${ABSTRACT_API_KEY}&country=US&year=${ year }&month=${month}&day=${day}`)
 	.then( resp => {
-		let resp_obj;
+		let respObj;
 
-		resp_obj = {
+		respObj = {
 			statusCode: 200,
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(resp.data)
 		};
 
-		return resp_obj;
+		// return respObj;
+		response(respObj);
 	})
 	.catch( err => {
+		let errObj;
+
 		const errBody = {
 			'err_msg': err.message
 		};
 
-		return {
+		errObj = {
 			statusCode: 500,
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(errBody)
 		};
+
+		response(errObj);
 	});
 
 	/* try {
-		let resp_obj
+		let respObj
 
 		const resp = await mydoc_data('mydoc_locations')
 			.select({
@@ -44,19 +50,19 @@ exports.handler = async (event, context) => {
 			.firstPage()
 
 		if (typeof resp !== 'undefined') {
-			resp_obj = {
+			respObj = {
 				statusCode: 200,
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(resp)
 			}
 		} else {
-			resp_obj = {
+			respObj = {
 				statusCode: 204,
 				body: 'I got nada...'
 			}
 		}
 
-		return resp_obj
+		return respObj
 	} catch (errObj) {
 		const errBody = {
 			'err_msg': errObj.message
