@@ -2,7 +2,7 @@ const { ABSTRACT_API_KEY } = process.env
 const { OPENAI_API_KEY } = process.env
 
 // exports.handler = async (event, context) => {
-export default function handler (request, response) {
+export default async function handler (request, response) {
 	const axios = require('axios');
 
 	const now = new Date();
@@ -10,7 +10,7 @@ export default function handler (request, response) {
 	const month = (now.toLocaleString("en-US", { month: "2-digit" }));
 	const day = (now.toLocaleString("en-US", { day: "2-digit" }));
 
-	axios.get(`https://holidays.abstractapi.com/v1/?api_key=${ABSTRACT_API_KEY}&country=US&year=${ year }&month=${month}&day=${day}`)
+	await axios.get(`https://holidays.abstractapi.com/v1/?api_key=${ABSTRACT_API_KEY}&country=US&year=${ year }&month=${month}&day=${day}`)
 	.then( resp => {
 		let respObj;
 
