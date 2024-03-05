@@ -1,3 +1,7 @@
+export const config = {
+	runtime: 'nodejs',
+};
+
 const { ABSTRACT_API_KEY } = process.env
 const { OPENAI_API_KEY } = process.env
 
