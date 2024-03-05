@@ -4,14 +4,28 @@ const { OPENAI_API_KEY } = process.env
 exports.handler = async (event, context) => {
 	const axios = require('axios');
 
-	axios.get(`https://holidays.abstractapi.com/v1/?api_key=${ ABSTRACT_API_KEY }&country=US&year=2020&month=12&day=25`)
+	axios.get(`https://holidays.abstractapi.com/v1/?api_key=${ ABSTRACT_API_KEY }&country=US&year=2024&month=3`)
 	.then( resp => {
-		console.log(resp.data);
+		let resp_obj;
 
-		return resp.data
+		resp_obj = {
+			statusCode: 200,
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(resp.data)
+		};
+
+		return resp_obj;
 	})
 	.catch( err => {
-		console.log(err);
+		const errBody = {
+			'err_msg': err.message
+		};
+
+		return {
+			statusCode: 500,
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(errBody)
+		};
 	});
 
 	/* try {
