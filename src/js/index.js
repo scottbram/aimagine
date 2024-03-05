@@ -25,3 +25,9 @@
 const imgUrl = null;
 
 // document.querySelector('#HolidayImg').src = imgUrl;
+
+async function logMovies() {
+	const response = await fetch('/api/holiday-img');
+	const holidays = await response;
+	console.log(holidays);
+}
